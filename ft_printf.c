@@ -24,3 +24,4 @@ int	main(void)
 	int returned = ft_printf( "0", 923489792, -239483, "fsefwef", NULL);
 	printf("FT_PRINTF RETURNED %d\n", returned);
 }
+
