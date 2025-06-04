@@ -1,26 +1,55 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
+#include "ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+int formater(va_list args, const char format)
 {
-	size_t	i;
+	int length;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	length = 0;
+	while (format)
+	{
+		if (format == 'c')
+			length += ft_char(va_args(format));
+		if (format == 's')
+			ft_str(va_args(format));
+		if (format == 'p')
+			hexa(va_args(format));
+		if (format == 'd')
+			ft_num(va_args(format));
+		
+	}
+	
 }
 
 int	ft_printf(const char *format, ...)
 {
-	if (!format)
-		return (-1);
-	return (write(1, format, ft_strlen(format)));
-}
+	int i;
+	int length;
+	va_list args;
 
+	i = 0;
+	length = 0;
+	va_start(args, format);
+	while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			length += formater(args, format[i + 1]);
+			i++;
+		}
+		else
+			ft_char(format[i]);
+		i++;
+	}
+	va_end(args);
+	return (length);
+}
+/* 
 int	main(void)
 {
-	int returned = ft_printf( "0", 923489792, -239483, "fsefwef", NULL);
+	int returned = printf( "", -239483, "fsefwef", NULL);
 	printf("FT_PRINTF RETURNED %d\n", returned);
 }
+ */
