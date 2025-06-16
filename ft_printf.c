@@ -3,24 +3,30 @@
 #include <stdarg.h>
 #include "ft_printf.h"
 
-int formater(va_list args, const char format)
+int ft_formater(va_list args, const char format)
 {
 	int length;
 
 	length = 0;
-	while (format)
-	{
-		if (format == 'c')
-			length += ft_char(va_args(format));
-		if (format == 's')
-			ft_str(va_args(format));
-		if (format == 'p')
-			hexa(va_args(format));
-		if (format == 'd')
-			ft_num(va_args(format));
-		
-	}
-	
+	if (format == 'c')
+		length += ft_char(va_arg(args, int));
+	else if (format == 's')
+		length += ft_strs(va_arg(args, char *));
+	else if (format == 'p')
+		length += ft_hexa(va_arg(args, unsigned long));
+	else if (format == 'd' || format == 'i')
+		length += ft_num(va_arg(args, int));
+	else if (format == '%')
+		length += ft_percentage(va_arg(args, int));
+	else if (format == 'u')
+		length += ft_unsigned(va_arg(args, unsigned int));
+	else if (format == 'x')
+		length += hexa(va_arg(args, unsigned int));
+	 else if (format == 'X')
+	 	  length += ft_upper_hexa(va_arg(args, unsigned int));
+	else
+		length += ft_char(format);
+	return (length);
 }
 
 int	ft_printf(const char *format, ...)
@@ -36,7 +42,7 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			length += formater(args, format[i + 1]);
+			length += ft_formater(args, format[i + 1]);
 			i++;
 		}
 		else

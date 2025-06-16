@@ -1,7 +1,11 @@
 #ifndef	FT_PRINTF
 #define FT_PRINTF
 
-char *ft_str(const char *str);
+#include <stdarg.h>
+#include <unistd.h>
 
+int ft_strs(const char *str);
+int ft_char(char c);
+int ft_percentage(char c);
 
 #endif
