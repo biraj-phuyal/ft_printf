@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <stdarg.h>
 #include "ft_printf.h"
 
 int ft_formater(va_list args, const char format)

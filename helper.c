@@ -1,8 +1,4 @@
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdlib.h>
 #include "ft_printf.h"
-#include <unistd.h>
 
 int ft_hexa(va_list args, unsigned int)
 {
@@ -21,7 +17,6 @@ int ft_hexa(va_list args, unsigned int)
     if (num < 10)
         return (ft_char(num + '0'));
     return (ft_char(num - 10 + 'a'));
-    
 }
 
 int ft_upper_hexa(va_list args, unsigned int)
@@ -45,12 +40,23 @@ int ft_upper_hexa(va_list args, unsigned int)
 
 int ft_unsigned(va_list args, unsigned int)
 {
-
+    
 }
 
 int ft_itoa(int num)
 {
+    char *str;
+    int i;
 
+    i = ft_numlen(num);
+    str = malloc(i + 1);
+    while (*str)
+    {
+        *str = num[i];
+        
+    }
+    
+    
 }
 
 int ft_num(va_list args, int)
